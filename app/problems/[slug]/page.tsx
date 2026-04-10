@@ -10,12 +10,13 @@ export function generateStaticParams() {
   return problems.map((p) => ({ slug: p.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const problem = problems.find((p) => p.slug === params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const problem = problems.find((p) => p.slug === slug);
   if (!problem) return {};
   return {
     title: `${problem.name} - Causes & Solutions`,
@@ -23,8 +24,9 @@ export function generateMetadata({
   };
 }
 
-export default function ProblemPage({ params }: { params: { slug: string } }) {
-  const problem = problems.find((p) => p.slug === params.slug);
+export default async function ProblemPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const problem = problems.find((p) => p.slug === slug);
   if (!problem) notFound();
 
   const relatedPlantData = plants.filter((p) =>

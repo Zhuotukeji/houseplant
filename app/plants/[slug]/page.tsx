@@ -9,12 +9,13 @@ export function generateStaticParams() {
   return plants.map((plant) => ({ slug: plant.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const plant = plants.find((p) => p.slug === params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const plant = plants.find((p) => p.slug === slug);
   if (!plant) return {};
   return {
     title: `${plant.name} Care Guide`,
@@ -22,8 +23,9 @@ export function generateMetadata({
   };
 }
 
-export default function PlantPage({ params }: { params: { slug: string } }) {
-  const plant = plants.find((p) => p.slug === params.slug);
+export default async function PlantPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const plant = plants.find((p) => p.slug === slug);
   if (!plant) notFound();
 
   const relatedProblemData = problems.filter((p) =>

@@ -8,12 +8,13 @@ export function generateStaticParams() {
   return concepts.map((c) => ({ slug: c.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const concept = concepts.find((c) => c.slug === params.slug);
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const concept = concepts.find((c) => c.slug === slug);
   if (!concept) return {};
   return {
     title: concept.name,
@@ -21,8 +22,9 @@ export function generateMetadata({
   };
 }
 
-export default function ConceptPage({ params }: { params: { slug: string } }) {
-  const concept = concepts.find((c) => c.slug === params.slug);
+export default async function ConceptPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const concept = concepts.find((c) => c.slug === slug);
   if (!concept) notFound();
 
   const relatedConceptData = concepts.filter(
