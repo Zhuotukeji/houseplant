@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: ["/search", "/api/"],
     },
-    sitemap: "https://houseplantcare.guide/sitemap.xml",
+    sitemap: "https://www.vtiue.com/sitemap.xml",
   };
 }

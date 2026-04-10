@@ -3,7 +3,7 @@ import { plants } from "@/data/plants";
 import { problems } from "@/data/problems";
 import { concepts } from "@/data/concepts";
 
-const BASE_URL = "https://houseplantcare.guide";
+const BASE_URL = "https://www.vtiue.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();

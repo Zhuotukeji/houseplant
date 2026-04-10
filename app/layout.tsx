@@ -30,7 +30,7 @@ export const metadata: Metadata = {
     "plant watering",
     "houseplant tips",
   ],
-  metadataBase: new URL("https://houseplantcare.guide"),
+  metadataBase: new URL("https://www.vtiue.com"),
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     follow: true,
   },
   alternates: {
-    canonical: "https://houseplantcare.guide",
+    canonical: "https://www.vtiue.com",
   },
 };
 
