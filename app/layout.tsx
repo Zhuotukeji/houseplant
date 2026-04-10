@@ -30,6 +30,22 @@ export const metadata: Metadata = {
     "plant watering",
     "houseplant tips",
   ],
+  metadataBase: new URL("https://houseplantcare.guide"),
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Houseplant Care Guide",
+    title: "Houseplant Care Guide - Plant Problem Finder",
+    description:
+      "Practical care guides, problem diagnosis, and expert tips to help your indoor plants thrive.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
+  alternates: {
+    canonical: "https://houseplantcare.guide",
+  },
 };
 
 export default function RootLayout({
